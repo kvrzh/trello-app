@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+import TrelloApp from '@/containers/TrelloApp';
+
+import {BrowserRouter} from 'react-router-dom';
+
+import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="TrelloApp">
-      qwee
-      </div>
+        <BrowserRouter>
+            <TrelloApp />
+        </BrowserRouter>
     );
   }
 }
