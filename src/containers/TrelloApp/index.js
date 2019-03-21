@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Route} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 
 import Layout from '@/components/Layout';
 import Boards from '@/containers/Boards';
+import Board from '@/containers/Board';
 
 class TrelloApp extends Component {
     send = () => {
@@ -15,8 +16,10 @@ class TrelloApp extends Component {
                 isAuth={true}
                 rightButtonAction={() => this.send()}
             >
-                <Route path="/boards" component={Boards}/>
-
+                <Switch>
+                    <Route path="/boards" component={Boards}/>
+                    <Route path="/board/:boardId" component={Board}/>
+                </Switch>
             </Layout>
         );
     }

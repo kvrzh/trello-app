@@ -1,0 +1,4 @@
+export const SET_BOARDS = "SET_BOARDS";
+export const SET_CURRENT_BOARD = "SET_CURRENT_BOARD";
+export const SET_CARDS = "SET_CARDS";
+export const SET_CURRENT_CARD_BOARD = "SET_CURRENT_CARD_BOARD";

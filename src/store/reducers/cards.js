@@ -1,5 +1,6 @@
 const initialState = {
-  cards: []
+  cards: [],
+    currentBoard: {}
 };
 
 export default function (state = initialState, action) {
@@ -9,6 +10,13 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 cards : cards
+            }
+        }
+        case 'SET_CURRENT_CARD_BOARD': {
+            const {board} = action.payload;
+            return {
+                ...state,
+                currentBoard: board
             }
         }
         default :
