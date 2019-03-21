@@ -1,5 +1,7 @@
 import axios from 'axios';
 
-axios.create({
-   baseURL: ''
+const ax = axios.create({
+   baseURL: 'https://api.trello.com/1/'
 });
+
+export default ax;

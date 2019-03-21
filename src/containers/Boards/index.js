@@ -1,29 +1,32 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import { SET_BOARDS, SET_CURRENT_BOARD } from '@/store/actionTypes';
+import { setBoards, initBoards } from '@/store/actions/boards';
 
 import Select from '@/components/UI/Select';
 import Button from '@/components/UI/Button';
 
 class Boards extends Component {
+    state = {
+       selectedBoard: ''
+    };
+
     componentDidMount() {
-        this.props.setBoards([{id: 1, value: 'qwe'}, {id: 2, value: 'test'}]);
+        this.props.initBoards(localStorage.getItem('token'));
     }
 
     onBoardChange = (event) => {
         const id = event.target.value;
-        const selectedBoardAr = this.props.boards.filter(board => +board.id === +id);
-        const selectedBoard = selectedBoardAr.length > 0 ? selectedBoardAr[0] : {};
-        this.props.setCurrentBoard(selectedBoard);
-    }
+        this.setState({
+            selectedBoard: id
+        });
+    };
 
     confirmButton = () => {
-        console.log(this.props.selectedBoard);
-        if(this.props.selectedBoard.id){
-            this.props.history.push({pathname: '/board/' + this.props.selectedBoard.id});
+        if(this.state.selectedBoard !== ''){
+            this.props.history.push({pathname: '/board/' + this.state.selectedBoard});
         }
-    }
+    };
 
     render() {
         return (
@@ -48,14 +51,12 @@ class Boards extends Component {
 const mapStateToProps = state => {
     return {
         boards: state.boards.boards,
-        selectedBoard: state.boards.currentBoard
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        setBoards: (boards) => dispatch({type: SET_BOARDS, payload: {boards: boards}}),
-        setCurrentBoard: (board) => dispatch({type: SET_CURRENT_BOARD, payload: {currentBoard: board}})
+        initBoards: (token) => dispatch(initBoards(token)),
     };
 };
 

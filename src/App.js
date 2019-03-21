@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 
 import TrelloApp from '@/containers/TrelloApp';
 
-import {BrowserRouter} from 'react-router-dom';
-
+import {BrowserRouter as Router} from 'react-router-dom';
+import {createBrowserHistory} from "history";
 import './App.css';
+
+const history = createBrowserHistory();
 
 class App extends Component {
   render() {
     return (
-        <BrowserRouter>
+        <Router history={history}>
             <TrelloApp />
-        </BrowserRouter>
+        </Router>
     );
   }
 }
