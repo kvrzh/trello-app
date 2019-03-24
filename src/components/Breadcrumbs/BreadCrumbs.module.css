@@ -2,3 +2,6 @@
     width: 100%;
     display: flex;
 }
+.BreadCrumbsItem.active{
+    color: red;
+}

@@ -1,38 +1,39 @@
-import { SET_BOARDS, SET_ERROR, SET_BOARDS_LOADING_FLAG } from '@/store/actionTypes';
+import { SET_CURRENT_CARD, SET_ERROR_CARD, SET_CARD_LOADING_FLAG } from '@/store/actionTypes';
 
 const initialState = {
-    boards: [],
-    errMsg: '',
+    currentCard: {},
     error: false,
+    errorMsg: '',
     loading: false,
 };
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case SET_BOARDS: {
-            const {boards} = action.payload;
+        case SET_CURRENT_CARD: {
+            const {card} = action.payload;
             return {
                 ...state,
-                boards : boards,
-                error: false,
+                currentCard: card,
                 loading: false,
+                error: false,
             }
         }
-        case SET_ERROR: {
+        case SET_ERROR_CARD: {
             const {error} = action.payload;
             return {
                 ...state,
                 error: true,
-                errorMessage: error
+                errorMsg: error,
+                loading: false,
             }
         }
-        case SET_BOARDS_LOADING_FLAG: {
+        case SET_CARD_LOADING_FLAG: {
             return {
                 ...state,
                 loading: true
             }
         }
-       default :
+        default :
             return state;
     }
 }

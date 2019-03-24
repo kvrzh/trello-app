@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import {Route, Switch} from 'react-router-dom';
-import Layout from '@/components/Layout';
-import {connect} from 'react-redux';
+import {Route, Switch, Redirect} from 'react-router-dom';
+import Layout from '@/hoc/Layout';
 import { withRouter } from 'react-router-dom';
 import Boards from '@/containers/Boards';
-import {initUser} from '@/store/actions/users';
 import Board from '@/containers/Board';
 import Login from '@/components/Login';
 import LoginAuth from '@/containers/LoginAuth';
@@ -26,7 +24,7 @@ class TrelloApp extends Component {
             const int = setInterval(() => {
                 if(openedUrl.closed){
                     const token = localStorage.getItem('token');
-                    if(!this.props.user.id && token.length > 10){
+                    if(token.length > 10){
                         this.props.history.push({pathname: '/boards'});
                     }
                     clearInterval(int);
@@ -35,17 +33,32 @@ class TrelloApp extends Component {
         });
 
     };
+
+    logout = () => {
+        localStorage.removeItem('token');
+        this.props.history.push({pathname: '/login'});
+    };
+
     render() {
+        const token = localStorage.getItem('token');
+        const isAuth = token && token.length > 10;
         return (
             <Layout
-                isAuth={false}
-                rightButtonAction={() => this.login()}
+                isAuth={isAuth}
+                rightButtonAction={() => isAuth ? this.logout() : this.login()}
             >
                 <Switch>
+                    <Route exact path="/" render={() => (
+                        isAuth ? (
+                            <Redirect to="/boards" />
+                        ) : (
+                            <Redirect to="/login" />
+                        )
+                    )}/>
                     <Route exact path="/login" component={Login}/>
                     <Route path="/login/auth" component={LoginAuth}/>
                     <PrivateRoute path="/boards" component={Boards} />
-                    <PrivateRoute path="/board/:boardId" component={Board}/>
+                    <PrivateRoute path="/board/:boardId"  component={Board}/>
                 </Switch>
             </Layout>
         );
