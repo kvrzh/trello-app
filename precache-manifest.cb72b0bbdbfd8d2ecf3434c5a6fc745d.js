@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/trello-app/static/js/runtime~main.185a5e42.js"
   },
   {
-    "revision": "64316266557894aac2f8",
-    "url": "/trello-app/static/js/main.340aea7b.chunk.js"
+    "revision": "b0158ffdfd639824b002",
+    "url": "/trello-app/static/js/main.b2703c00.chunk.js"
   },
   {
     "revision": "0b8d12915fbdf460c40b",
     "url": "/trello-app/static/js/2.a2700b0f.chunk.js"
   },
   {
-    "revision": "64316266557894aac2f8",
+    "revision": "b0158ffdfd639824b002",
     "url": "/trello-app/static/css/main.b3afa78d.chunk.css"
   },
   {
-    "revision": "d9e8e84bda4ee93795330e52dc8dd3ae",
+    "revision": "a85be56ec3c6cf827d9616587955439b",
     "url": "/trello-app/index.html"
   }
 ];
