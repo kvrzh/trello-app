@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/trello-app/static/css/main.b3afa78d.chunk.css"
   },
   {
-    "revision": "b8ce3a43ae6423d497f4406f019f0a0a",
+    "revision": "6acaebd69cb04f6254f4551ee8f75408",
     "url": "/trello-app/index.html"
   }
 ];
