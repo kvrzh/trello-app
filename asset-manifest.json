@@ -1,13 +1,13 @@
 {
-  "main.css": "/trello-app/static/css/main.b3afa78d.chunk.css",
-  "main.js": "/trello-app/static/js/main.59aed824.chunk.js",
-  "main.js.map": "/trello-app/static/js/main.59aed824.chunk.js.map",
-  "runtime~main.js": "/trello-app/static/js/runtime~main.185a5e42.js",
-  "runtime~main.js.map": "/trello-app/static/js/runtime~main.185a5e42.js.map",
-  "static/js/2.002bdcd2.chunk.js": "/trello-app/static/js/2.002bdcd2.chunk.js",
-  "static/js/2.002bdcd2.chunk.js.map": "/trello-app/static/js/2.002bdcd2.chunk.js.map",
-  "index.html": "/trello-app/index.html",
-  "precache-manifest.340ef89f73bad2085505518418d869c6.js": "/trello-app/precache-manifest.340ef89f73bad2085505518418d869c6.js",
-  "service-worker.js": "/trello-app/service-worker.js",
-  "static/css/main.b3afa78d.chunk.css.map": "/trello-app/static/css/main.b3afa78d.chunk.css.map"
+  "main.css": "/static/css/main.b3afa78d.chunk.css",
+  "main.js": "/static/js/main.4e42dd97.chunk.js",
+  "main.js.map": "/static/js/main.4e42dd97.chunk.js.map",
+  "runtime~main.js": "/static/js/runtime~main.c5541365.js",
+  "runtime~main.js.map": "/static/js/runtime~main.c5541365.js.map",
+  "static/js/2.c4c97c17.chunk.js": "/static/js/2.c4c97c17.chunk.js",
+  "static/js/2.c4c97c17.chunk.js.map": "/static/js/2.c4c97c17.chunk.js.map",
+  "index.html": "/index.html",
+  "precache-manifest.a71057e42b93bf005cbe97e271f43102.js": "/precache-manifest.a71057e42b93bf005cbe97e271f43102.js",
+  "service-worker.js": "/service-worker.js",
+  "static/css/main.b3afa78d.chunk.css.map": "/static/css/main.b3afa78d.chunk.css.map"
 }
