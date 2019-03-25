@@ -1,6 +1,5 @@
-import React, {Component, PureComponent} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Link} from "react-router-dom";
 import {initCurrentCard, setLoadingFlag} from '@/store/actions/card';
 import Modal from '@/components/UI/Modal';
 import Backdrop from '@/components/UI/Backdrop';
@@ -9,7 +8,7 @@ import Button from '@/components/UI/Button';
 import Aux from '@/hoc/Auxx';
 import LoadingComponent from '@/components/UI/LoadingComponent';
 
-class CardDetail extends PureComponent {
+class CardDetail extends Component {
     componentDidMount() {
         if (this.props.card.id!== this.props.match.params.cardId) {
             this.props.initCurrentCard(this.props.match.params.cardId);

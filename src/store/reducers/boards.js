@@ -23,7 +23,8 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 error: true,
-                errorMessage: error
+                loading: false,
+                errMsg: error
             }
         }
         case SET_BOARDS_LOADING_FLAG: {

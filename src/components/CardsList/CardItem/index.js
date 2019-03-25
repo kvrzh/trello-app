@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import styled from 'styled-components'
 
-import cardListClasses from './CardItem.module.css';
 
 import Button from '@/components/UI/Button';
 

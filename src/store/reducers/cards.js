@@ -1,4 +1,4 @@
-import { SET_CURRENT_BOARD, SET_CARDS, SET_ERROR_CARDS, SET_LOADING_FLAG_CARDS } from '@/store/actionTypes';
+import { SET_CURRENT_BOARD, SET_ERROR_CARDS, SET_LOADING_FLAG_CARDS } from '@/store/actionTypes';
 
 const initialState = {
     cards: [],

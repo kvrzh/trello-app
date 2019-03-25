@@ -1,4 +1,4 @@
-import React, {Component, PureComponent} from 'react';
+import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import styled from 'styled-components'
@@ -12,7 +12,7 @@ import Aux from '@/hoc/Auxx';
 import CardDetail from '@/containers/CardDetail';
 import LoadingComponent from '@/components/UI/LoadingComponent';
 
-class Board extends PureComponent{
+class Board extends Component{
 
     componentDidMount() {
         if(this.props.currentBoard.id !== this.props.match.params.boardId){

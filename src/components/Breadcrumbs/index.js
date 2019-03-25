@@ -3,9 +3,6 @@ import styled from 'styled-components'
 import {Link} from "react-router-dom";
 import Aux from '@/hoc/Auxx';
 
-
-import breadCrumbsClasses from './BreadCrumbs.module.css';
-
 const breadCrumbs = (props) => {
     let breadcrumbs = [];
     const Breadcrumbs = styled.div`
