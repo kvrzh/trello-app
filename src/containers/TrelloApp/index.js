@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom';
 import Boards from '@/containers/Boards';
 import Board from '@/containers/Board';
 import Login from '@/components/Login';
-import LoginAuth from '@/containers/LoginAuth';
 import PrivateRoute from '@/hoc/PrivateRoute';
 
 class TrelloApp extends Component {
@@ -13,25 +12,24 @@ class TrelloApp extends Component {
         const width = 600, height = 600;
         const left = (window.innerWidth / 2) - (width / 2);
         const top = (window.innerHeight / 2) - (height / 2);
-        const redirectUrl = `${window.location.origin}/login/auth`;
-        const url = `https://trello.com/1/authorize?expiration=1day&name=TrelloApp&scope=read&response_type=token&key=321471dffbe1e0c750fa713b81d24145&return_url=${redirectUrl}&callback_method=fragment`
+        const redirectUrl = `${window.location.origin}${process.env.PUBLIC_URL}/#/login/auth`;
+        const url = `https://trello.com/1/authorize?expiration=1day&name=TrelloApp&scope=read&response_type=token&key=321471dffbe1e0c750fa713b81d24145&callback_method=postMessage&return_url=${redirectUrl}`
         const openedUrl = window.open(url, '',
             `toolbar=no, location=no, directories=no, status=no, menubar=no, 
       scrollbars=no, resizable=no, copyhistory=no, width=${width}, 
       height=${height}, top=${top}, left=${left}`
         );
-        openedUrl.addEventListener('unload', (e) => {
-            const int = setInterval(() => {
-                if(openedUrl.closed){
-                    const token = localStorage.getItem('token');
-                    if(token.length > 10){
-                        this.props.history.push({pathname: '/boards'});
-                    }
-                    clearInterval(int);
+        const messageEvent = ({data: token}) => {
+            if(token && token.length > 10){
+                localStorage.setItem('token', token);
+                this.props.history.push({pathname: '/boards'});
+                if (typeof window.removeEventListener === 'function') {
+                    window.removeEventListener('message', messageEvent, false);
                 }
-            }, 200);
-        });
-
+            }
+            openedUrl.close();
+        };
+        window.addEventListener('message', messageEvent);
     };
 
     logout = () => {
@@ -55,10 +53,9 @@ class TrelloApp extends Component {
                             <Redirect to="/login" />
                         )
                     )}/>
-                    <Route exact path="/login" component={Login}/>
-                    <Route path="/login/auth" component={LoginAuth}/>
-                    <PrivateRoute path="/boards" component={Boards} />
-                    <PrivateRoute path="/board/:boardId"  component={Board}/>
+                    <Route exact path={`/login`} component={Login}/>
+                    <PrivateRoute path={`/boards`} component={() => <Boards loginFn={() => this.login()}/>} />
+                    <PrivateRoute path={`/board/:boardId`}  component={Board}/>
                 </Switch>
             </Layout>
         );

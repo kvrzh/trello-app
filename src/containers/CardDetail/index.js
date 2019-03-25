@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+
 import {initCurrentCard, setLoadingFlag} from '@/store/actions/card';
 import Modal from '@/components/UI/Modal';
 import Backdrop from '@/components/UI/Backdrop';
 import styled from 'styled-components'
+import ErrorBlock from '@/components/UI/ErrorBlock';
 import Button from '@/components/UI/Button';
 import Aux from '@/hoc/Auxx';
 import LoadingComponent from '@/components/UI/LoadingComponent';
@@ -52,7 +54,11 @@ class CardDetail extends Component {
             <Backdrop backdropClick={() => this.returnToBoards()}>
                 <Modal>
                     <CardDetailBlock>
-                    {this.props.loading ? (<LoadingComponent />) :
+                    {this.props.loading ? (<LoadingComponent />) : this.props.error ? (
+                        <ErrorBlock
+                            text={this.props.errMessage}
+                        >Very sad</ErrorBlock>
+                    ) :
                         (
                             <Aux>
                                 <CardDetailHeader>

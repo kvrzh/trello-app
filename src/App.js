@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 
 import TrelloApp from '@/containers/TrelloApp';
 
-import {BrowserRouter as Router} from 'react-router-dom';
-import {createBrowserHistory} from "history";
+import {HashRouter} from 'react-router-dom';
+import {createHashHistory } from "history";
+
 import './App.css';
 
-const history = createBrowserHistory();
+const history = createHashHistory();
 
 class App extends Component {
   render() {
     return (
-        <Router history={history}>
+        <HashRouter history={history}>
             <TrelloApp />
-        </Router>
+        </HashRouter>
     );
   }
 }

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import styled from 'styled-components'
 import { initBoards } from '@/store/actions/boards';
+import { withRouter } from 'react-router-dom';
 
 import BreadCrumbs from '@/components/Breadcrumbs';
 import Aux from '@/hoc/Auxx';
@@ -11,15 +12,13 @@ import Button from '@/components/UI/Button';
 import LoadingComponent from '@/components/UI/LoadingComponent';
 
 class Boards extends Component {
+
     state = {
        selectedBoard: ''
     };
 
     componentDidMount() {
         this.props.initBoards(localStorage.getItem('token'));
-        if(this.props.error === true){
-            console.log('qwe')
-        }
     }
 
     onBoardChange = (event) => {
@@ -35,29 +34,9 @@ class Boards extends Component {
         }
     };
 
-    relogin =() => {
+    relogin = () => {
         localStorage.removeItem('token');
-        const width = 600, height = 600;
-        const left = (window.innerWidth / 2) - (width / 2);
-        const top = (window.innerHeight / 2) - (height / 2);
-        const redirectUrl = `${window.location.origin}/login/auth`;
-        const url = `https://trello.com/1/authorize?expiration=1day&name=TrelloApp&scope=read&response_type=token&key=321471dffbe1e0c750fa713b81d24145&return_url=${redirectUrl}&callback_method=fragment`
-        const openedUrl = window.open(url, '',
-            `toolbar=no, location=no, directories=no, status=no, menubar=no, 
-      scrollbars=no, resizable=no, copyhistory=no, width=${width}, 
-      height=${height}, top=${top}, left=${left}`
-        );
-        openedUrl.addEventListener('unload', (e) => {
-            const int = setInterval(() => {
-                if(openedUrl.closed){
-                    const token = localStorage.getItem('token');
-                    if(token.length > 10){
-                        this.props.history.push({pathname: '/boards'});
-                    }
-                    clearInterval(int);
-                }
-            }, 200);
-        });
+        this.props.loginFn();
     };
 
     render() {
@@ -151,4 +130,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Boards);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Boards));
